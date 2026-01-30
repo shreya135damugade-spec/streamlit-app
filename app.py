@@ -34,18 +34,22 @@ connect_btn = st.button("Connect")
 # ---- Connection Logic ----
 if connect_btn:
     try:
-        conn = pyodbc.connect(
+        conn_str = (
             "DRIVER={ODBC Driver 17 for SQL Server};"
-            "SERVER=192.168.1.5,54906;"
-            "DATABASE=Sales;"
-            "UID=sql_user;"
-            "PWD=StrongPassword@123;",
-            timeout=30
+            f"SERVER={server};"
+            f"DATABASE={database};"
+            f"UID={username};"
+            f"PWD={password};"
+            "TrustServerCertificate=yes;"
         )
+
+        conn = pyodbc.connect(conn_str, timeout=30)
 
         st.success("✅ Connected successfully to SQL Server")
 
-        df = pd.read_sql("SELECT name FROM sys.databases", conn)
+        # ---- Test Query ----
+        query = "SELECT name FROM sys.databases"
+        df = pd.read_sql(query, conn)
 
         st.subheader("📂 Databases on Server")
         st.dataframe(df)
