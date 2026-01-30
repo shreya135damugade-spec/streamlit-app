@@ -40,7 +40,7 @@ if connect_btn:
             "DATABASE=Sales;"
             "UID=sql_user;"
             "PWD=StrongPassword@123;",
-            timeout=5
+            timeout=30
         )
 
         st.success("✅ Connected successfully to SQL Server")
