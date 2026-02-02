@@ -43,7 +43,7 @@ if connect_btn:
             "TrustServerCertificate=yes;"
         )
 
-        conn = pyodbc.connect(conn_str, timeout=30)
+        conn = pyodbc.connect(conn_str, timeout=5)
 
         st.success("✅ Connected successfully to SQL Server")
 
